@@ -132,6 +132,56 @@
             </div>
           </div>
         </nav>
+        {% block header %}
+        <style> .carousel { margin-bottom: 4rem; } .carousel-caption { bottom: 3rem; z-index: 10; } .carousel-item { height: 32rem; } .marketing .col-lg-4 { margin-bottom: 1.5rem; text-align: center; } .marketing .col-lg-4 p { margin-right: .75rem; margin-left: .75rem; } .featurette-divider { margin: 5rem 0; } .featurette-heading { letter-spacing: -.05rem; } @media (min-width: 40em) { .carousel-caption p { margin-bottom: 1.25rem; font-size: 1.25rem; line-height: 1.4; } .featurette-heading { font-size: 50px; } } @media (min-width: 62em) { .featurette-heading { margin-top: 7rem; } } </style>
+        <div id="headerCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#headerCarousel" data-bs-slide-to="0" class="bg-light active" aria-label="Slide 1" aria-current="true"></button>
+            <button type="button" data-bs-target="#headerCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="bg-light"></button>
+            <button type="button" data-bs-target="#headerCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="bg-light"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <svg width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#555"></rect></svg>
+              <div class="container">
+                <div class="carousel-caption text-center">
+                  <h1>Lorem, ipsum dolor.</h1>
+                  <p class="text-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, reiciendis?</p>
+                  <p><a class="btn btn-lg btn-primary" href="#">Latest Blog</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <svg width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#555"></rect></svg>
+              <div class="container">
+                <div class="carousel-caption text-start">
+                  <h1>Lorem, ipsum dolor.</h1>
+                  <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi dignissimos ipsam exercitationem placeat est. Porro nisi excepturi pariatur cum incidunt illo nostrum ipsa hic dolore.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#">My Projects</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <svg width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#555"></rect></svg>
+              <div class="container">
+                <div class="carousel-caption text-center">
+                  <h1>Lorem, ipsum dolor.</h1>
+                  <p class="text-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, reiciendis?</p>
+                  <p><a class="btn btn-lg btn-primary" href="#">Websites</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" data-bs-target="#headerCarousel" type="button"  data-bs-slide="prev">
+            <i class="bi bi-caret-left" style="transform:scale(2);" aria-hidden="true"></i>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" data-bs-target="#headerCarousel" type="button"  data-bs-slide="next">
+            <i class="bi bi-caret-right" style="transform:scale(2);" aria-hidden="true"></i>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        {% endblock header %}
         {% block content %}
         {% endblock content %}
       </body>
