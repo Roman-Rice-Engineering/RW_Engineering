@@ -103,7 +103,7 @@
                   <a class="nav-link">Blog</a>
                 </li>
               </ul>
-              <div class="nav-item d-inline-flex py-2">
+              <div class="nav-item d-inline-flex py-2 me-3">
                 <i class="bi bi-brightness-high-fill"></i>
                 <div class="form-check form-switch mx-3" style="transform: scale(1.5)">
                   <input onclick="const root = document.querySelector(':root'); if(root.getAttribute('data-bs-theme') == 'light'){ root.setAttribute('data-bs-theme', 'dark'); }else{ root.setAttribute('data-bs-theme', 'light'); }"
@@ -115,7 +115,7 @@
                 <i class="bi bi-moon-stars nav-item e-auto ps-0"
                    style="transform: translate3d(-12.5px, 0px, 0px)"></i>
               </div>
-              <div class="ms-3 nav-item d-xl-inline-flex">
+              <div class="nav-item d-xl-inline-flex">
                 {% if user.username %}
                   <p class="m-0 p-0">Logged in as&MediumSpace;</p>
                   <a href="#">{{ user.username }}</a>
