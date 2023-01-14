@@ -18,6 +18,13 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.index)
+    path('projects/', include('projects.urls')),
+    path('blog', include('blog.urls')),
+    path('admin/', admin.site.urls),
+    path('', views.index),
 ]
+
+#Support for static files -- NOT SUFFICIENT FOR PRODUCTION
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
 
