@@ -5,6 +5,7 @@ class WeeklyBlogPost(models.Model):
     title = models.CharField(max_length = 200)
     thumbnail = models.ImageField(upload_to = 'static/blog')
     creation_time = models.DateTimeField(default = timezone.now)
+    deleted = models.BooleanField(default = False)
 
 class Content(models.Model):
     blog = models.ForeignKey(WeeklyBlogPost, on_delete = models.CASCADE)
