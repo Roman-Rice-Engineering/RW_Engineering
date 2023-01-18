@@ -30,3 +30,4 @@ class Code_L(models.Model):
 class Image(models.Model):
     content_container = models.ForeignKey(Content, on_delete = models.CASCADE)
     image = models.ImageField(upload_to = 'static/blog')
+    image_description = models.CharField(max_length = 200)
