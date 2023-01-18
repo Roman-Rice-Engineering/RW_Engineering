@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div>
+    <div class="container bg-body-tertiary my-5 p-0">
+
+    <div class="bg-body-secondary w-100 m-0">
+        <h1 class="text-center p-5">Blog post of {{ blog.creation_time.date }}</h1>
+    </div>
+    {% for content in blog.content_set.all %}
+    <div class="container px-4">
+        {% if content.content_type == 'text' %}
+        {% for stuff in content.text_set.all %}
+        <p class="fs-5">
+            {{ stuff.text }}
+        </p>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}
