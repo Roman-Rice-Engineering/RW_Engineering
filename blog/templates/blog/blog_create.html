@@ -1,0 +1,145 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div>
+<div class="container bg-body-secondary">
+    <h1 class="text-center py-4 mt-4 mb-0">Create a weekly blog post</h1>
+</div>
+<div class="container bg-body-tertiary p-4">
+    <form method="post" action="#" id="blog_creation_form" num_fields="0">
+        {% csrf_token %}
+        <div class="btn-group py-4">
+            <button type="button" class="btn btn-outline-info" onclick="create_content('text')">Add Text</button>
+            <button type="button" class="btn btn-outline-info" onclick="create_content('image')">Add Image</button>
+        </div>
+        <div class="btn-group py-4">
+            <button type="button" class="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Code    
+            </button>
+                <ul class="dropdown-menu">
+                    <li><button type="button" class="dropdown-item" onclick="create_content('code_s')">Small</button></li>
+                    <li><button type="button" class="dropdown-item" onclick="create_content('code_m')">Medium</button></li>
+                    <li><button type="button" class="dropdown-item" onclick="create_content('code_l')">Large</button></li>
+                </ul>
+        </div>
+        <div class="btn-group py-4" style="float: right;">
+            <button type="submit" class="btn btn-success" aria-expanded="false">
+                Create Blog Post
+            </button>
+        </div>
+        <div>
+            <h2 class="h4">Title</h2>
+            <textarea name="title" class="form-control" rows="2"></textarea>
+            <input type="hidden" name="index" value="title">
+            <p class="mb-4 mt-3">Charecters remaining: <span>XXX</span></p>
+        </div>
+        <div>
+            <hr>
+            <h2 class="h4">Thumbnail</h2>
+            <input type="file" name="thumbnail"></input>
+            <textarea class="form-control mt-2" name="thumbnail_description"></textarea>
+            <input type="hidden" name="index" value="thumbnail">
+            <hr class="pb-3" style="opacity: 0;">
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function create_content(content_type){
+        //Set up content element
+        let content = document.createElement("div");
+        content.appendChild(document.createElement("hr"));
+        let hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = "index";
+        let delete_button = document.createElement("button");
+        delete_button.classList.add("btn", "btn-danger", "my-2");
+        delete_button.style = "float: right;";
+        delete_button.type = "button";
+        delete_button.setAttribute("onclick", "this.parentNode.remove()");
+        delete_button.append("Delete");
+        let end_element = document.createElement("p");
+            end_element.classList.add("mb-5", "mt-3");
+            end_element.append("Charecters remaining: XXX");
+        let what_content = document.createElement("h2");
+        what_content.classList.add("h5");
+
+        if(content_type == "text"){
+            what_content.append("Text");
+            content.appendChild(what_content);
+            hiddenInput.value = "text";
+            let textField = document.createElement("textarea");
+            textField.classList.add("form-control");
+            textField.rows = "4";
+            textField.name = "text";
+            content.appendChild(textField);
+        }else if(content_type == "image"){
+            what_content.append("Image");
+            content.appendChild(what_content);
+            hiddenInput.value = "image";
+            let imageField = document.createElement("input");
+            imageField.name = "image";
+            imageField.type = "file";
+            content.appendChild(imageField);
+            let textField = document.createElement("textarea");
+            textField.classList.add("form-control", "mt-2");
+            textField.name = "image_description";
+            content.appendChild(textField);
+        }else if(content_type == "code_s"){
+            what_content.append("Code - Small");
+            content.appendChild(what_content);
+            hiddenInput.value = "code_s";
+            let textField = document.createElement("textarea");
+            textField.classList.add("form-control");
+            textField.rows = "4";
+            textField.name = "code_s";
+            let textFieldContainer = document.createElement("div");
+            textFieldContainer.classList.add("col-lg-8");
+            let containerContainer = document.createElement("div");
+            containerContainer.classList.add("row")
+            textFieldContainer.appendChild(textField);
+            containerContainer.appendChild(textFieldContainer);
+            content.appendChild(containerContainer);
+        }else if(content_type == "code_m"){
+            what_content.append("Code - Medium");
+            content.appendChild(what_content);
+            hiddenInput.value = "code_m";
+            let textField = document.createElement("textarea");
+            textField.classList.add("form-control");
+            textField.rows = "6";
+            textField.name = "code_m";
+            let textFieldContainer = document.createElement("div");
+            textFieldContainer.classList.add("col-lg-8");
+            let containerContainer = document.createElement("div");
+            containerContainer.classList.add("row")
+            textFieldContainer.appendChild(textField);
+            containerContainer.appendChild(textFieldContainer);
+            content.appendChild(containerContainer);
+        }else if(content_type == "code_l"){
+            what_content.append("Code - Large");
+            content.appendChild(what_content);
+            hiddenInput.value = "code_l";
+            let textField = document.createElement("textarea");
+            textField.classList.add("form-control");
+            textField.rows = "10";
+            textField.name = "code_l";
+            let textFieldContainer = document.createElement("div");
+            textFieldContainer.classList.add("col-lg-8");
+            let containerContainer = document.createElement("div");
+            containerContainer.classList.add("row")
+            textFieldContainer.appendChild(textField);
+            containerContainer.appendChild(textFieldContainer);
+            content.appendChild(containerContainer);
+        }
+
+        content.appendChild(hiddenInput);
+        content.appendChild(delete_button);
+        content.appendChild(end_element);
+        const form = document.querySelector("#blog_creation_form");
+        form.appendChild(content);
+    }
+</script>
+</div>
+{% endblock content %}

@@ -4,6 +4,7 @@ from django.utils import timezone
 class WeeklyBlogPost(models.Model):
     title = models.CharField(max_length = 200)
     thumbnail = models.ImageField(upload_to = 'static/blog')
+    thumbnail_description = models.CharField(max_length = 200)
     creation_time = models.DateTimeField(default = timezone.now)
     deleted = models.BooleanField(default = False)
 
