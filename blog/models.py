@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class WeeklyBlogPost(models.Model):
     title = models.CharField(max_length = 200)
-    thumbnail = models.ImageField(upload_to = 'static/blog')
+    thumbnail = models.ImageField(null = True, blank = True, upload_to = 'static/blog')
     thumbnail_description = models.CharField(max_length = 200)
     creation_time = models.DateTimeField(default = timezone.now)
     deleted = models.BooleanField(default = False)
@@ -31,5 +31,5 @@ class Code_L(models.Model):
 
 class Image(models.Model):
     content_container = models.ForeignKey(Content, on_delete = models.CASCADE)
-    image = models.ImageField(upload_to = 'static/blog')
+    image = models.ImageField(null = True, blank = True, upload_to = 'static/blog')
     image_description = models.CharField(max_length = 200)

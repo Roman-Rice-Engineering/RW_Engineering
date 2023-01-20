@@ -3,12 +3,12 @@
 {% block content %}
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-0 m-0">
-    {% for blog in AllBlogs %}
+    {% for blog in AllBlogs reversed %}
     {% if blog.deleted == False %}
     <div class="col">
       <div class="card shadow-sm">
           <a href="/blog/{{blog.id}}" class="image-zoom-hover-wrapper">
-          <img class="card-img-top image-zoom-hover" src="/{{blog.thumbnail}}" alt="Alternate Text" aria-label="Aria-label" focusable="false">
+          <img class="card-img-top image-zoom-hover" src="/{{blog.thumbnail}}" alt="{{blog.thumbnail_description}}" aria-label="{{blog.thumbnail_description}}" focusable="false">
           </a>
           <div class="card-body">
           <p class="card-text">{{ blog.title }}</p>

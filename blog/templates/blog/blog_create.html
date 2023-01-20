@@ -9,7 +9,7 @@
     <h1 class="text-center py-4 mt-4 mb-0">Create a weekly blog post</h1>
 </div>
 <div class="container bg-body-tertiary p-4">
-    <form method="post" action="#" id="blog_creation_form" num_fields="0">
+    <form method="post" action="#" id="blog_creation_form" num_fields="0" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="btn-group py-4">
             <button type="button" class="btn btn-outline-info" onclick="create_content('text')">Add Text</button>
