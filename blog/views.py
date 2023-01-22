@@ -36,27 +36,58 @@ def blog_create(request):
 
             textCounter = 0
             imageCounter = 0
-            image_descriptionCounter = 0
             code_sCounter = 0
             code_mCounter = 0
             code_lCounter = 0
 
             new_blog_post = WeeklyBlogPost()
+            new_blog_post.title = title
+            new_blog_post.thumbnail = thumbnail
+            new_blog_post.thumbnail_description = thumbnail_description
             new_blog_post.save()
+            
             for index_item in index:
-                if index_item == "title":
-                    new_blog_post.title = title
-                elif index_item == "thumbnail":
-                    new_blog_post.thumbnail = thumbnail
-                    new_blog_post.thumbnail_description = thumbnail_description
-                elif index_item == "text":
-                    new_content = new_blog_post.content_set.create()
-                    new_content.content_type = "text"
+                if index_item == "text":
+                    new_content = new_blog_post.content_set.create(content_type = "text")
                     new_content.save()
                     new_content_field = new_content.text_set.create()
                     new_content_field.text = text[textCounter]
                     new_content_field.save()
                     textCounter += 1
+                elif index_item == "image":
+                    new_content = new_blog_post.content_set.create(content_type = "image")
+                    new_content.save()
+                    new_content_field = new_content.image_set.create()
+
+                # Important note!!!! if image field is left blank the flollowing code may cause images to be placed in incorrect positions
+                    if(imageCounter < len(image)):
+                        new_content_field.image = image[imageCounter]
+
+                    
+                    new_content_field.image_description = image_description[imageCounter]
+                    new_content_field.save()
+                    imageCounter += 1
+                if index_item == "code_s":
+                    new_content = new_blog_post.content_set.create(content_type = "code_s")
+                    new_content.save()
+                    new_content_field = new_content.code_s_set.create()
+                    new_content_field.code = code_s[code_sCounter]
+                    new_content_field.save()
+                    code_sCounter += 1
+                if index_item == "code_m":
+                    new_content = new_blog_post.content_set.create(content_type = "code_m")
+                    new_content.save()
+                    new_content_field = new_content.code_m_set.create()
+                    new_content_field.code = code_m[code_mCounter]
+                    new_content_field.save()
+                    code_mCounter += 1
+                if index_item == "code_l":
+                    new_content = new_blog_post.content_set.create(content_type = "code_l")
+                    new_content.save()
+                    new_content_field = new_content.code_l_set.create()
+                    new_content_field.code = code_l[code_lCounter]
+                    new_content_field.save()
+                    code_lCounter += 1
 
                 new_blog_post.save()
     return render(request, 'blog/blog_create.html', {})
