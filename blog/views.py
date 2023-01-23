@@ -15,7 +15,11 @@ def blog(request):
 def blog_post(request, id):
     if not WeeklyBlogPost.objects.filter(id = id).exists():
         raise Http404()
+
     blog = WeeklyBlogPost.objects.get(id = id)
+    if blog.deleted:
+        raise Http404
+        
     return render(request, 'blog/blog_post.html', {'blog': blog})
 
 def blog_create(request):
