@@ -19,14 +19,13 @@ def blog_post(request, id):
     blog = WeeklyBlogPost.objects.get(id = id)
     if blog.deleted:
         raise Http404
-        
+
     return render(request, 'blog/blog_post.html', {'blog': blog})
 
 def blog_create(request):
     if not request.user.is_superuser:
         raise Http404()
     if request.method == "POST":
-        print(request.FILES)
         if index := request.POST.getlist("index"):
             title = request.POST.get("title")
             thumbnail = request.FILES.get("thumbnail")
