@@ -23,7 +23,7 @@
         {% elif content.content_type == 'image' %}
         {% for stuff in content.image_set.all %}
         <div class="my-5 d-flex justify-content-center">
-            <div>
+            <div class="w-50 d-block ">
                 <img class="img-fluid" src="/{{stuff.image}}" alt="">
                 <div class="d-flex justify-content-center">
                     <p class="w-75"><small>{{stuff.image_description}}</small></p>
