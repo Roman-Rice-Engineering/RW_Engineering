@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div>
+    <div class="container bg-body-tertiary my-5 p-0 pb-5">
+
+    <div class="bg-body-secondary w-100 m-0 mb-5">
+        <h1 class="text-center p-5">Blog post of {{ blog.creation_time.date }}</h1>
+    </div>
+    {% for content in blog.content_set.all %}
+    <div class="container px-4">
+        {% if content.content_type == 'text' %}
+        {% for stuff in content.text_set.all %}
+        <div class="w-75 m-auto">
+            <p class="fs-5">
+                {{ stuff.text }}
+            </p>
+        </div>
+        {% endfor %}
+        {% elif content.content_type == 'image' %}
+        {% for stuff in content.image_set.all %}
+        <div class="my-5 d-flex justify-content-center">
+            <div class="w-50 d-block ">
+                <img class="img-fluid" src="/{{stuff.image}}" alt="">
+                <div class="d-flex justify-content-center">
+                    <p class="w-75"><small>{{stuff.image_description}}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% elif content.content_type == 'code_s' %}
+        {% for stuff in content.code_s_set.all %}
+        <div class="justify-content-center d-flex my-5"><div class="bg-body" style="width: 900px; height: 25vh;overflow-y: scroll;">{{stuff.code|safe}}</div></div>
+        {% endfor %}
+        {% elif content.content_type == 'code_m' %}
+        {% for stuff in content.code_m_set.all %}
+        <div class="justify-content-center d-flex my-5"><div class="bg-body" style="width: 900px; height: 35vh;overflow-y: scroll;">{{stuff.code|safe}}</div></div>
+        {% endfor %}
+        {% elif content.content_type == 'code_l' %}
+        {% for stuff in content.code_l_set.all %}
+        <div class="justify-content-center d-flex my-5"><div class="bg-body" style="width: 900px; height: 45vh;overflow-y: scroll;">{{stuff.code|safe}}</div></div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

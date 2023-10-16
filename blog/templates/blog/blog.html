@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-0 m-0">
+    {% for blog in AllBlogs reversed %}
+    {% if blog.deleted == False %}
+    <div class="col">
+      <div class="card shadow-sm">
+          <a href="/blog/{{blog.id}}" class="image-zoom-hover-wrapper">
+          <img class="card-img-top image-zoom-hover" src="/{{blog.thumbnail}}" alt="{{blog.thumbnail_description}}" aria-label="{{blog.thumbnail_description}}" focusable="false">
+          </a>
+          <div class="card-body">
+          <p class="card-text">{{ blog.title }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <form method="post" action="#">
+              {% csrf_token %}
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary" onclick="window.location.href = '/blog/{{blog.id}}';">Read More</button>
+              {% if user.is_superuser %}
+              <button type="submit" name="delete_blog" value="{{blog.id}}" class="btn btn-danger">Delete</button>
+              {% endif %}
+            </div>
+            </form>
+            <small class="text-muted">{{ blog.creation_time|timesince }} ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

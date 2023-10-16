@@ -1,4 +1,4 @@
-"""RW_Engineering URL Configuration
+"""RW_Engineering/main URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -13,8 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
-    path('', include('main.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('projects/', include('projects.urls')),
+    path('blog/', include('blog.urls')),
+    path('admin/', admin.site.urls),
+    path('', views.index),
 ]
+
+#Support for static files -- NOT SUFFICIENT FOR PRODUCTION
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
+

@@ -1,0 +1,10 @@
+.image-zoom-hover:hover{
+    transform:scale(1.05);
+    -webkit-transition:0.25s;
+    -o-transition:0.25s;
+    transition:0.25s;
+}
+.image-zoom-hover-wrapper{
+    display: inline-block;
+    overflow: hidden;
+}
